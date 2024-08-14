@@ -1,0 +1,24 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "savePanne()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    
+    <div class="field col-3">
+        <label for="libellePanne">libelle Type Panne </label>
+        <input id="libellePanne" type="text" [(ngModel)]="panne.libellePanne"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+
+    <div class="field col-3">
+        <label for="typepanne"> Type Panne</label>
+        <p-dropdown [options]="typepannes" [(ngModel)]="selectedtypepanne" optionLabel="libelleTypePanne" [placeholder]="'Sélectionnez un typepanne'"></p-dropdown>
+    </div>
+   
+   
+    
+</div>
+

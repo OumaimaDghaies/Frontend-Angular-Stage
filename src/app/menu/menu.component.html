@@ -1,0 +1,13 @@
+<aside class="layout-sidebar" [ngClass]="{'active' : active}">
+    <a [routerLink]="['/']" class="logo">
+        <img alt="logo" src="assets/images/logo.png" height="41" />
+    </a>
+    <nav>
+        <ol class="layout-menu">
+            <li *ngFor="let item of menu; let i = index;" app-menuitem [item]="item" [root]="true"></li>
+        </ol>
+    </nav>
+</aside>
+
+
+  

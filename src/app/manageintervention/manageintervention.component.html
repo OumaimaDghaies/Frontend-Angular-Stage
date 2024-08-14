@@ -1,0 +1,94 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewIntervention()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllIntervention()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listIntervention" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="id">
+                <div class="flex align-items-center">Id <p-sortIcon field="id">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="id" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+           
+            <th pSortableColumn="code">
+                <div class="flex align-items-center">code Intervention <p-sortIcon field="code"></p-sortIcon>
+                    <p-columnFilter type="text" field="code" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="description">
+                <div class="flex align-items-center">description Intervention<p-sortIcon field="description"></p-sortIcon>
+                    <p-columnFilter type="text" field="description" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="operation">
+                <div class="flex align-items-center">Operatrice<p-sortIcon field="operation"></p-sortIcon>
+                    <p-columnFilter type="text" field="operation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="employee">
+                <div class="flex align-items-center">Monitrice<p-sortIcon field="employee"></p-sortIcon>
+                    <p-columnFilter type="text" field="employee" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="preparation">
+                <div class="flex align-items-center">preparation<p-sortIcon field="preparation"></p-sortIcon>
+                    <p-columnFilter type="text" field="preparation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="panne">
+                <div class="flex align-items-center">panne<p-sortIcon field="panne"></p-sortIcon>
+                    <p-columnFilter type="text" field="panne" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-intervention>
+        <tr [pSelectableRow]="Intervention">
+            <td>{{intervention.id}}</td>
+            <td>{{intervention.code}}</td>
+            <td>{{intervention.description}}</td>
+            
+            <td>{{intervention.operationLibelle}}</td>
+            <td>{{intervention.employeeLibelle}}</td>
+            <td>{{intervention.preparationLibelle}}</td>
+            <td>{{intervention.panneLibelle}}</td>
+            <td  style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editIntervention(intervention)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger"
+                    (click)="deleteIntervention(intervention)">
+            </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<p-dialog *ngIf="displayInterventionDialog" header="Intervention" [(visible)]="displayInterventionDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-intervention [intervention]="Interventionselected" 
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newIntervention]="newIntervention"></app-intervention>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->

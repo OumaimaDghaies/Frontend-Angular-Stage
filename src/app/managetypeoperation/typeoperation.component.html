@@ -1,0 +1,30 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "saveTypeOperation()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    
+    <div class="field col-3">
+        <label for="codeTypeOperation">code Type Operation </label>
+        <input id="codeTypeOperation" type="text" [(ngModel)]="typeoperation.codeTypeOperation"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+
+    <div class="field col-3">
+        <label for="libelleTypeOperation"> libelle Type Operation</label>
+        <input id="libelleTypeOperation" type="text" [(ngModel)]="typeoperation.libelleTypeOperation" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="OrdreImpression"> Ordre Impression</label>
+        <input id="OrdreImpression" type="text" [(ngModel)]="typeoperation.OrdreImpression" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+   
+   
+    
+</div>
+

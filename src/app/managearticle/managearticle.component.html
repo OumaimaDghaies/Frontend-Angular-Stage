@@ -1,0 +1,72 @@
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+  <ng-template pTemplate="left">
+    <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+      (click)="openNewArticle()"></button>
+  </ng-template>
+
+  <ng-template pTemplate="right">
+    <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+      (click)="RefreshAllArticle()"></button>
+  </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listArticles" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+  styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="id">
+        <div class="flex align-items-center">Id <p-sortIcon field="id">
+          </p-sortIcon>
+          <p-columnFilter type="numeric" field="id" matchMode="equals" display="menu">
+          </p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="codeArticle">
+        <div class="flex align-items-center">Code Article <p-sortIcon field="codeArticle"></p-sortIcon>
+          <p-columnFilter type="text" field="codeArticle" matchMode="contains" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="libelle">
+        <div class="flex align-items-center">Libelle <p-sortIcon field="libelle"></p-sortIcon>
+          <p-columnFilter type="text" field="libelle" matchMode="contains" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="famille.libelle">
+        <div class="flex align-items-center">Famille <p-sortIcon field="famille.libelle"></p-sortIcon>
+          <p-columnFilter type="text" field="famille.libelle" matchMode="contains" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th pSortableColumn="sousfamille.libellesousfamille">
+        <div class="flex align-items-center">Sous-Famille <p-sortIcon field="sousfamille.libellesousfamille"></p-sortIcon>
+          <p-columnFilter type="text" field="sousfamille.libellesousfamille" matchMode="contains" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="width: 3rem"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-article>
+    <tr [pSelectableRow]="article">
+      <td>{{article.id}}</td>
+      <td>{{article.codeArticle}}</td>
+      <td>{{article.libelle}}</td>
+      <td>{{article.familleLibelle}}</td>
+      <td>{{article.sousFamilleLibelle}}</td>
+      <td style="width: 3rem; white-space: nowrap;">
+        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+          (click)="editArticle(article)"></button>
+          <button pButton pRipple icon="pi pi-trash"
+                          class="p-button-rounded p-button-danger"
+                          (click)="deleteArticle(article)">
+                  </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog *ngIf="displayArticleDialog" header="Article" [(visible)]="displayArticleDialog" [modal]="true"
+  [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+  <app-article [article]="Articleselected" [saveE]="saveE" (saveEChange)="updatesaveE($event)"
+    [newArticle]="newArticle"></app-article>
+</p-dialog>

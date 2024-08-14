@@ -1,0 +1,23 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "saveFamilleProduitFini()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    <div class="field col-3">
+        <label for="code">Code Famille</label>
+        <input id="code" type="text" [(ngModel)]="famillePFini.code" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="Libelle">Libelle </label>
+        <input id="Libelle" type="text" [(ngModel)]="famillePFini.libelle"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+   
+   
+    
+</div>
+

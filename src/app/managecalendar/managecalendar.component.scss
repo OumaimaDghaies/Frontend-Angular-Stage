@@ -1,0 +1,76 @@
+.calendar-container {
+  margin-bottom: 20px; /* Espacement en bas du calendrier */
+
+  .p-dropdown {
+    margin-bottom: 10px; /* Espacement entre le dropdown et les mois */
+  }
+
+  .calendar {
+    .card {
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-radius: 4px;
+    }
+
+    .week-days {
+      display: flex;
+      justify-content: space-around;
+      background-color: #eee;
+      padding: 5px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .day-name {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .day {
+      text-align: center;
+      padding: 5px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      
+      &.weekend {
+        background-color: red;
+        color: rgb(255, 255, 255); /* Optional: if you want to change the text color */
+      }
+    }
+
+    .p-col-4 {
+      width: calc(33.33% - 20px); /* Ajustez la largeur de la colonne en fonction de vos besoins */
+      margin-right: 20px;
+      margin-bottom: 20px;
+      float: left;
+    }
+
+    .p-col-4:nth-child(3n+3) {
+      margin-right: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .p-col-4 {
+        width: calc(50% - 20px); /* Pour deux colonnes par ligne sur les écrans plus petits */
+      }
+
+      .p-col-4:nth-child(2n+2) {
+        margin-right: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .p-col-4 {
+        width: 100%; /* Une colonne par ligne sur les écrans très petits */
+        margin-right: 0;
+      }
+    }
+  }
+}

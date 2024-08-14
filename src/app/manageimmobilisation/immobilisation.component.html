@@ -1,0 +1,33 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "saveImmobilisation()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    <div class="field col-3">
+        <label for="designation">designation</label>
+        <input id="designation" type="text" [(ngModel)]="immobilisation.designation" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="emplacement">emplacement </label>
+        <input id="emplacement" type="text" [(ngModel)]="immobilisation.emplacement"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="numSerie">numSerie</label>
+        <input id="numSerie" type="text" [(ngModel)]="immobilisation.numSerie" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="groupe">groupe </label>
+        <input id="groupe" type="text" [(ngModel)]="immobilisation.groupe"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+   
+   
+    
+</div>
+

@@ -1,0 +1,43 @@
+<!-- Toolbar avec bouton Enregistrer -->
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)="saveArticle()"
+                class="btn btn-primary">
+        </button>
+    </ng-template>
+</p-toolbar>
+
+<!-- Sélection de la Famille -->
+<div class="field col-md-4">
+    <label for="famille">Famille</label>
+    <p-dropdown [options]="familles" [(ngModel)]="selectedFamille" optionLabel="libelle"
+                placeholder="Sélectionnez une famille" class="dropdown-custom"
+                (onChange)="onFamilleChange($event)">
+    </p-dropdown>
+</div>
+
+<!-- Sélection de la Sous-famille -->
+<div class="field col-md-4">
+    <label for="sousfamille">Sous-famille</label>
+    <p-dropdown [options]="sousFamilles" [(ngModel)]="selectedSousFamille" optionLabel="libellesousfamille"
+                placeholder="Sélectionnez une sous-famille" class="dropdown-custom">
+    </p-dropdown>
+</div>
+<!-- Formulaire avec grille -->
+<div class="formgrid grid">
+    <!-- Champ Code Article -->
+    <div class="field col-md-4">
+        <label for="codeArticle">Code Article</label>
+        <input id="codeArticle" type="text" [(ngModel)]="article.codeArticle"
+                class="form-control" placeholder="Code Article">
+    </div>
+
+    <!-- Champ Libellé -->
+    <div class="field col-md-4">
+        <label for="Libelle">Libellé</label>
+        <input id="Libelle" type="text" [(ngModel)]="article.libelle"
+                class="form-control" placeholder="Libellé">
+    </div>
+
+    
+</div>

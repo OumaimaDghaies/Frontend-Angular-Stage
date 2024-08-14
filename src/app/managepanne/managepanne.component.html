@@ -1,0 +1,69 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewPanne()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllPanne()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listPanne" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="id">
+                <div class="flex align-items-center">Id <p-sortIcon field="id">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="id" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+           
+            <th pSortableColumn="libellePanne">
+                <div class="flex align-items-center">libelle Panne <p-sortIcon field="libellePanne"></p-sortIcon>
+                    <p-columnFilter type="text" field="libellePanne" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="typepanne">
+                <div class="flex align-items-center">Type Panne<p-sortIcon field="typepanne"></p-sortIcon>
+                    <p-columnFilter type="text" field="typepanne" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-panne>
+        <tr [pSelectableRow]="panne">
+            <td>{{panne.id}}</td>
+            <td>{{panne.libellePanne}}</td>
+            <td>{{panne.typepanneLibelle}}</td>
+            <td  style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editPanne(panne)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger"
+                    (click)="deletePanne(panne)">
+            </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<p-dialog *ngIf="displayPanneDialog" header="Panne" [(visible)]="displayPanneDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-panne [panne]="Panneselected" 
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newPanne]="newPanne"></app-panne>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->

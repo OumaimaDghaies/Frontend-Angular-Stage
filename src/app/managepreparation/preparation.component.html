@@ -1,0 +1,23 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "savePreparation()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    <div class="field col-3">
+        <label for="codePreparation">Code Preparation</label>
+        <input id="codePreparation" type="text" [(ngModel)]="preparation.codePreparation" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="libellePreparation">libelle Preparation </label>
+        <input id="libellePreparation" type="text" [(ngModel)]="preparation.libellePreparation"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+   
+   
+    
+</div>
+

@@ -1,0 +1,167 @@
+<p-toolbar class="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button
+            pButton
+            label="Enregistrer"
+            pRipple
+            icon="pi pi-save"
+            (click)="saveIntervention()"
+        ></button>
+    </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid p-fluid p-3">
+    <div class="field col-12 md:col-4">
+        <label for="code">Code Intervention</label>
+        <input
+            id="code"
+            type="text"
+            [(ngModel)]="intervention.code"
+            class="p-inputtext p-component p-filled w-full"
+            (click)="showTable('code')"
+        />
+    </div>
+    <div class="field col-12 md:col-4">
+        <label for="dateDemande">Date Demande</label>
+        <input
+            id="dateDemande"
+            type="date"
+            [(ngModel)]="intervention.dateDemande"
+            class="p-inputtext p-component p-filled w-full"
+            (click)="showTable('dateDemande')"
+        />
+    </div>
+    <div class="field col-12 md:col-4">
+        <label for="description">Description</label>
+        <input
+            id="description"
+            type="text"
+            [(ngModel)]="intervention.description"
+            class="p-inputtext p-component p-filled w-full"
+            (click)="showTable('description')"
+        />
+    </div>
+   
+    <div class="field col-12 md:col-4">
+        <label for="panne">Panne</label>
+        <p-multiSelect
+            [options]="panne"
+            [(ngModel)]="selectedPanne"
+            optionLabel="libellePanne"
+            placeholder="Select panne"
+            (click)="showTable('panne')"
+        ></p-multiSelect>
+    </div>
+    <div class="field col-12 md:col-4">
+        <label for="preparation">Preparation</label>
+        <p-multiSelect
+            [options]="preparation"
+            [(ngModel)]="selectedPreparation"
+            optionLabel="libellePreparation"
+            placeholder="Select preparation"
+            (click)="showTable('preparation')"
+        ></p-multiSelect>
+    </div>
+
+    <div class="formgrid grid p-fluid p-3">
+        
+        <!-- Input fields -->
+        <div class="field col-12" (click)="showTable('immobilisation')">
+            <label for="immobilisation">Immobilisation</label>
+            <input
+                id="immobilisation"
+                type="text"
+                [value]="selectedImmobilisation?.designation || ''"
+                class="p-inputtext p-component p-filled w-full"
+            />
+        </div>
+        <div class="field col-12" (click)="showTable('employee')">
+            <label for="employee">Employee</label>
+            <input
+                id="employee"
+                type="text"
+                [value]="selectedEmployee?.libelleEmployee || ''"
+                class="p-inputtext p-component p-filled w-full"
+            />
+        </div>
+        <div class="field col-12" (click)="showTable('operation')">
+            <label for="operation">Operation</label>
+            <input
+                id="operation"
+                type="text"
+                [value]="selectedOperation?.libelleOperation || ''"
+                class="p-inputtext p-component p-filled w-full"
+            />
+        </div>
+    
+        <!-- Tables -->
+        <div class="field col-12" *ngIf="visibleTable === 'immobilisation'">
+        <p-table
+            [value]="immobilisation"
+            selectionMode="single"
+            [(selection)]="selectedImmobilisation"
+            dataKey="id"
+            (onRowSelect)="selectImmobilisation($event.data)"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Designation</th>
+                    <th>Numero de serie</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-imo>
+                <tr [pSelectableRow]="imo">
+                    <td>{{ imo.designation }}</td>
+                    <td>{{ imo.numSerie }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="field col-12" *ngIf="visibleTable === 'employee'">
+        <p-table
+            [value]="employee"
+            selectionMode="single"
+            [(selection)]="selectedEmployee"
+            dataKey="id"
+            (onRowSelect)="selectEmployee($event.data)"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nom</th>
+                    <th>Code</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-emp>
+                <tr [pSelectableRow]="emp">
+                    <td>{{ emp.libelleEmployee }}</td>
+                    <td>{{ emp.codeEmployee }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="field col-12" *ngIf="visibleTable === 'operation'">
+        <p-table
+            [value]="operation"
+            selectionMode="single"
+            [(selection)]="selectedOperation"
+            dataKey="id"
+            (onRowSelect)="selectOperation($event.data)"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nom</th>
+                    <th>Code</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-op>
+                <tr [pSelectableRow]="op">
+                    <td>{{ op.libelleOperation }}</td>
+                    <td>{{ op.codeOperation }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    </div>
+

@@ -1,0 +1,66 @@
+{
+    "data": [
+        {
+            "code": "101",
+            "name": "BNA",
+            "children": [
+                {
+                    "code": "101",
+                    "module":"pos",
+                    "name": "BANQUE NATIONALE AGRICOLE"
+                },
+                {
+                    "code": "101",
+                    "module":"gab",
+                    "name": "BANQUE NATIONALE AGRICOLE"
+                },
+                {
+                    "code": "101",
+                    "module":"accessfees",
+                    "name": "BANQUE NATIONALE AGRICOLE"
+                },
+                {
+                    "code": "101",
+                    "module":"stationcommission",
+                    "name": "B.N.A"
+                },
+                {
+                    "code": "101",
+                    "module":"dailycheck",
+                    "name": "BNA"
+                }
+            ]
+        },
+        {
+            "code": "102",
+            "name": "ATB",
+            "children": [
+                {
+                    "code": "102",
+                    "module":"pos",
+                    "name": "ARAB TUNISIAN BANK"
+                },
+                {
+                    "code": "102",
+                    "module":"gab",
+                    "name": "ARAB TUNISIAN BANK"
+                },
+                {
+                    "code": "102",
+                    "module":"accessfees",
+                    "name": "ARAB TUNISIAN BANK"
+                },
+                {
+                    "code": "102",
+                    "module":"stationcommission",
+                    "name": "A.T.B"
+                },
+                {
+                    "code": "102",
+                    "module":"dailycheck",
+                    "name": "ATB"
+                }
+            ]
+        }
+    ]
+}

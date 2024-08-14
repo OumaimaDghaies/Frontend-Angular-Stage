@@ -1,0 +1,80 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewImmobilisation()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllImmobilisation()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listImmobilisation" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="compteur">
+                <div class="flex align-items-center">compteur <p-sortIcon field="compteur">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="compteur" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="designation">
+                <div class="flex align-items-center">designation<p-sortIcon field="designation"></p-sortIcon>
+                    <p-columnFilter type="text" field="designation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="emplacement">
+                <div class="flex align-items-center">emplacement <p-sortIcon field="emplacement"></p-sortIcon>
+                    <p-columnFilter type="text" field="emplacement" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="numSerie">
+                <div class="flex align-items-center">numSerie<p-sortIcon field="numSerie"></p-sortIcon>
+                    <p-columnFilter type="text" field="numSerie" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="groupe">
+                <div class="flex align-items-center">groupe <p-sortIcon field="groupe"></p-sortIcon>
+                    <p-columnFilter type="text" field="groupe" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-immobilisation>
+        <tr [pSelectableRow]="immobilisation">
+            <td>{{immobilisation.compteur}}</td>
+            <td>{{immobilisation.designation}}</td>
+            <td>{{immobilisation.emplacement}}</td>
+            <td>{{immobilisation.numSerie}}</td>
+            <td>{{immobilisation.groupe}}</td>
+            <td style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editImmobilisation(immobilisation)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger"
+                    (click)="deleteImmobilisation(immobilisation)">
+            </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<p-dialog *ngIf="displayImmobilisationDialog" header="Immobilisation" [(visible)]="displayImmobilisationDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-immobilisation [immobilisation]="Immobilisationselected" 
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newImmobilisation]="newImmobilisation"></app-immobilisation>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->

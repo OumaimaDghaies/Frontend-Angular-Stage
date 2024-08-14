@@ -1,0 +1,143 @@
+{
+    "data": [
+        {
+            "name": "Configuration",
+            "icon": "pi pi-cog",
+            "privilege":[],
+            "children": [
+                {
+                    "name": "Service",
+                    "routerLink": "/main/managedepartment"
+                },
+                {
+                    "name": "Territoire",
+                    "routerLink": "/main/manageterritory"
+                },
+                {
+                    "name": "Bureau payeur",
+                    "routerLink": "/main/managepayoffice"
+                },
+                {
+                    "name": "Catégorie prêt",
+                    "routerLink": "/main/manageloancategory"
+                },
+                {
+                    "name": "Employé",
+                    "children": [
+                        {
+                            "name": "Gérer",
+                            "routerLink": "/main/manageemployee"
+                        },
+                        {
+                            "name": "Agent de saisie",
+                            "routerLink": "/main/managecollaborators"
+                        },
+                        {
+                            "name": "GPS",
+                            "routerLink": "/main/manageemployeegps"
+                        }
+                    ]
+                    
+                },
+                {
+                    "name": "Contrat",
+                    "children": [
+                        {
+                            "name": "Gérer",
+                            "routerLink": "/main/managecontract"
+                        },
+                        {
+                            "name": "Extension",
+                            "routerLink": "/main/managecontractextension"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mes données",
+            "icon": "pi pi-pencil",
+            "privilege":[],
+            "children": [
+                {
+                    "name": "Mes saisies",
+                    "routerLink": "/main/mydata"
+                },
+                {
+                    "name": "Mes collaborateurs",
+                    "icon": "pi pi-home",
+                    "children": [
+                        {
+                            "name": "Saisie / Importer",
+                            "routerLink": "/main/collaboratordata"
+                        },
+                        {
+                            "name": "Gérer",
+                            "routerLink": "/main/managecollaboratordata"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mes approbation N1",
+            "icon": "pi pi-user-edit",
+            "privilege":[],
+            "children": [
+                {
+                    "name": "Mes collaborateurs",
+                    "routerLink": "/main/approvallevel1"
+                },
+                {
+                    "name": "Etat quinzaine",
+                    "routerLink": "/main/updatemileagechargesstatus"
+                }
+            ]
+        }
+        ,
+        {
+            "name": "Impression des documents",
+            "icon": "pi pi-print",
+            "privilege":[],
+            "children": [
+                {
+                    "name": "Frais kilométriques validés",
+                    "routerLink": "/main/printcollaboratordata"
+                },
+                {
+                    "name": "Etat d'amortissement",
+                    "routerLink": "/main/depreciationstate"
+                }
+            ]
+        }
+        ,
+        {
+            "name": "Profile utilisateur",
+            "icon": "pi pi-users",
+            "privilege":[],
+            "children": [
+                {
+                    "name": "Mon profile",
+                    "routerLink": "/main/userprofile"
+                }
+            ]
+        },
+        {
+            "name": "Tâches exceptionnelles",
+            "icon": "pi pi-users",
+            "privilege":[],
+            "children": [
+                {
+                    "name": "Réinitialisation mot de passe",
+                    "routerLink": "/main/resetemployeepassword"
+                },
+                {
+                    "name": "Approbation demande retrait",
+                    "routerLink": "/main/approvalwithdrawalrequest"
+                }
+                
+            ]
+        }
+    ]
+}
+

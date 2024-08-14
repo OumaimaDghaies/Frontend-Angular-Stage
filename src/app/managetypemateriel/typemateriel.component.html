@@ -1,0 +1,26 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "saveTypeMateriel()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    
+    <div class="field col-3">
+        <label for="codeTypeMateriel">code Type Materiel </label>
+        <input id="codeTypeMateriel" type="text" [(ngModel)]="typemateriel.codeTypeMateriel"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+
+    <div class="field col-3">
+        <label for="libelleTypeMateriel"> libelle Type Materiel</label>
+        <input id="libelleTypeMateriel" type="text" [(ngModel)]="typemateriel.libelleTypeMateriel" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    
+   
+   
+    
+</div>
+

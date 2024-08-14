@@ -1,0 +1,82 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewOperation()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllOperation()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listOperation" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="compteur">
+                <div class="flex align-items-center">compteur <p-sortIcon field="compteur">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="compteur" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+           
+            <th pSortableColumn="codeOperation">
+                <div class="flex align-items-center">Code Type Materiel <p-sortIcon field="codeOperation"></p-sortIcon>
+                    <p-columnFilter type="text" field="codeOperation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="libelleOperation">
+                <div class="flex align-items-center">Libelle Type Operation<p-sortIcon field="libelleOperation"></p-sortIcon>
+                    <p-columnFilter type="text" field="libelleOperation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="typemateriel">
+                <div class="flex align-items-center">Type Materiel<p-sortIcon field="typemateriel"></p-sortIcon>
+                    <p-columnFilter type="text" field="typemateriel" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="typeoperation">
+                <div class="flex align-items-center">Type Operation<p-sortIcon field="typeoperation"></p-sortIcon>
+                    <p-columnFilter type="text" field="typeoperation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-operation>
+        <tr [pSelectableRow]="operation">
+            <td>{{operation.compteur}}</td>
+            <td>{{operation.codeOperation}}</td>
+            <td>{{operation.libelleOperation}}</td>
+            <td>{{operation.Libelletypemateriel}}</td>
+            <td>{{operation.Libelletypeoperation}}</td>
+            <td  style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editOperation(operation)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger"
+                    (click)="deleteOperation(operation)">
+            </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<p-dialog *ngIf="displayOperationDialog" header="Type Operation" [(visible)]="displayOperationDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-operation [operation]="Operationselected" 
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newOperation]="newOperation"></app-operation>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->

@@ -1,0 +1,75 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewTypeOperation()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllTypeOperation()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listTypeOperation" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="compteur">
+                <div class="flex align-items-center">compteur <p-sortIcon field="compteur">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="compteur" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+           
+            <th pSortableColumn="codeTypeOperation">
+                <div class="flex align-items-center">code Type Operation <p-sortIcon field="codeTypeOperation"></p-sortIcon>
+                    <p-columnFilter type="text" field="codeTypeOperation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="libelleTypeOperation">
+                <div class="flex align-items-center">libelle Type Operation<p-sortIcon field="libelleTypeOperation"></p-sortIcon>
+                    <p-columnFilter type="text" field="libelleTypeOperation" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="OrdreImpression">
+                <div class="flex align-items-center">Ordre Impression<p-sortIcon field="OrdreImpression"></p-sortIcon>
+                    <p-columnFilter type="text" field="OrdreImpression" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-typeoperation>
+        <tr [pSelectableRow]="typeoperation">
+            <td>{{typeoperation.compteur}}</td>
+            <td>{{typeoperation.codeTypeOperation}}</td>
+            <td>{{typeoperation.libelleTypeOperation}}</td>
+            <td>{{typeoperation.OrdreImpression}}</td>
+            <td  style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editTypeOperation(typeoperation)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger"
+                    (click)="deleteTypeOperation(typeoperation)">
+            </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<p-dialog *ngIf="displayTypeOperationDialog" header="Type Operation" [(visible)]="displayTypeOperationDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-typeoperation [typeoperation]="TypeOperationselected" 
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newTypeOperation]="newTypeOperation"></app-typeoperation>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->

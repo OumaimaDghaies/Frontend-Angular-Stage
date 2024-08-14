@@ -1,0 +1,92 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewEntreeStock()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllEntreeStock()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listEntreeStock" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="Compteur">
+                <div class="flex align-items-center">Compteur <p-sortIcon field="Compteur">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="Compteur" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="CodeEntree">
+                <div class="flex align-items-center">Code Entree <p-sortIcon field="CodeEntree"></p-sortIcon>
+                    <p-columnFilter type="text" field="CodeEntree" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="ReferenceCommandeClient">
+                <div class="flex align-items-center">Reference Commande Client <p-sortIcon field="ReferenceCommandeClient"></p-sortIcon>
+                    <p-columnFilter type="text" field="ReferenceCommandeClient" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th><th pSortableColumn="CodeFournisseur">
+                <div class="flex align-items-center">Code Fournisseur <p-sortIcon field="CodeFournisseur"></p-sortIcon>
+                    <p-columnFilter type="text" field="CodeFournisseur" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th><th pSortableColumn="CodeSourceEntree">
+                <div class="flex align-items-center">Code Source Entree <p-sortIcon field="CodeSourceEntree"></p-sortIcon>
+                    <p-columnFilter type="text" field="CodeSourceEntree" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th><th pSortableColumn="CodeStatusEntree">
+                <div class="flex align-items-center">Code Status Entree <p-sortIcon field="CodeStatusEntree"></p-sortIcon>
+                    <p-columnFilter type="text" field="CodeStatusEntree" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th><th pSortableColumn="DateColisage">
+                <div class="flex align-items-center">Date Colisage <p-sortIcon field="DateColisage"></p-sortIcon>
+                    <p-columnFilter type="text" field="DateColisage" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th><th pSortableColumn="DateEntree">
+                <div class="flex align-items-center">Date Entree <p-sortIcon field="DateEntree"></p-sortIcon>
+                    <p-columnFilter type="text" field="DateEntree" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-entreestock>
+        <tr [pSelectableRow]="entreestock">
+            <td>{{entreestock.compteur}}</td>
+            <td>{{entreestock.codeEntree}}</td>
+            <td>{{entreestock.referenceCommandeClient}}</td>
+            <td>{{entreestock.codeFournisseur}}</td>
+            <td>{{entreestock.codeSourceEntree}}</td>
+            <td>{{entreestock.codeStatusEntree}}</td>
+            <td>{{entreestock.dateColisage}}</td>
+            <td>{{entreestock.dateEntree}}</td>
+            <td style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editEntreeStock(entreestock)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                          class="p-button-rounded p-button-danger"
+                          (click)="deleteEntreeStock(entreestock)">
+                  </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+<p-dialog *ngIf="displayEntreeStockDialog" header="Entree Stock" [(visible)]="displayEntreeStockDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-entreestock [entreestock]="entreestockselected"  [detailsentreestock]="detailsentreestockselected"
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newentreestock]="newentreestock"></app-entreestock>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->

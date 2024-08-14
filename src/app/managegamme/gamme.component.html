@@ -1,0 +1,60 @@
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)="saveGamme()"></button>
+    </ng-template>
+</p-toolbar>
+<p-toast></p-toast>
+<div class="formgrid grid">
+    <div class="field col-3">
+        <label for="codeGamme">Code Gamme</label>
+        <input id="codeGamme" type="text" [(ngModel)]="gamme.codeGamme" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="libelleGamme">Libelle Gamme</label>
+        <input id="libelleGamme" type="text" [(ngModel)]="gamme.libelleGamme"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    
+    <div class="field col-2 flex justify-content-center flex-wrap">
+        <div class="flex align-items-center justify-content-center m-0 col-12">
+            Gamme References
+        </div>
+        <div class="flex align-items-center justify-content-center m-0">
+            <p-checkbox [(ngModel)]="gamme.gammeReferences" [binary]="true" inputId="binary" (onChange)="onGammeReferencesChange()"></p-checkbox>
+        </div>
+    </div>
+    
+    <div class="field col-3">
+        <label for="codeGammeReference">Code Gamme Reference</label>
+        <ng-container *ngIf="gamme.gammeReferences; else textInput">
+            <p-dropdown [options]="codeGammeReferenceOptions" [(ngModel)]="gamme.codeGammeReference" 
+            placeholder="Select a Code Gamme Reference" class="w-full"></p-dropdown>
+        </ng-container>
+        <ng-template #textInput>
+            <input id="codeGammeReference" type="text" [(ngModel)]="gamme.codeGammeReference"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+        </ng-template>
+    </div>
+
+    <div class="field col-3">
+        <label for="codeGammeMillet">Code Gamme Millet</label>
+        <input id="codeGammeMillet" type="text" [(ngModel)]="gamme.codeGammeMillet"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="qtePiquage">Qte Piquage</label>
+        <input id="qtePiquage" type="number" [(ngModel)]="gamme.qtePiquage"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="qteControle">Qte Controle</label>
+        <input id="qteControle" type="number" [(ngModel)]="gamme.qteControle"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="qteExpedition">Qte Expedition</label>
+        <input id="qteExpedition" type="number" [(ngModel)]="gamme.qteExpedition"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+</div>

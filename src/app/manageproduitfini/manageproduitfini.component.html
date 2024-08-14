@@ -1,0 +1,81 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewProduitFini()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllProduitFinis()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listPFinis" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="id">
+                <div class="flex align-items-center">Id <p-sortIcon field="id">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="id" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="codeP">
+                <div class="flex align-items-center">Code Produit Fini <p-sortIcon field="codeP"></p-sortIcon>
+                    <p-columnFilter type="text" field="codeP" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="libelle">
+                <div class="flex align-items-center">libelle <p-sortIcon field="libelle"></p-sortIcon>
+                    <p-columnFilter type="text" field="libelle" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="gammeLibelle">
+                <div class="flex align-items-center">Gamme <p-sortIcon field="gammeLibelle"></p-sortIcon>
+                    <p-columnFilter type="text" field="gammeLibelle" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="FamillePFLibelle">
+                <div class="flex align-items-center">Famille Produit Fini <p-sortIcon field="FamillePFLibelle"></p-sortIcon>
+                    <p-columnFilter type="text" field="FamillePFLibelle" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-PFini>
+        <tr [pSelectableRow]="PFini">
+            <td>{{PFini.id}}</td>
+            <td>{{PFini.codeP}}</td>
+            <td>{{PFini.libelle}}</td>
+            <td>{{PFini.gammeLibelle}}</td>
+            <td>{{PFini.FamillePFLibelle}}</td>
+            <td style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editProduitFini(PFini)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger"
+                    (click)="deleteProduitFini(PFini)">
+            </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<p-dialog *ngIf="displayPFiniDialog" header="Produit Fini" [(visible)]="displayPFiniDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-produitfini [PFini]="PFiniselected" 
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newPFini]="newPFini"></app-produitfini>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->

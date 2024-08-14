@@ -1,0 +1,98 @@
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)="saveEntreeStock()">
+        </button>
+    </ng-template>
+    <ng-template pTemplate="right">
+        <input type="file" (change)="ReadExcel($event)" >
+      
+    </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    <div class="field col-3">
+        <label for="codeEntree">Code Entree</label>
+        <input   id="codeEntree" type="text" [(ngModel)]="entreestock.codeEntree" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="referenceCommandeClient">Reference Commande </label>
+        <input   id="referenceCommandeClient" type="text" [(ngModel)]="entreestock.referenceCommandeClient" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="codeFournisseur">Code Fournisseur</label>
+        <input   id="codeFournisseur" type="text" [(ngModel)]="entreestock.codeFournisseur" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="codeSourceEntree">Code Source Entree</label>
+        <input   id="codeSourceEntree" type="text" [(ngModel)]="entreestock.codeSourceEntree" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="codeStatusEntree">Code Status Entree</label>
+        <input   id="codeStatusEntree" type="text" [(ngModel)]="entreestock.codeStatusEntree" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="dateColisage">Date Colisage</label>
+        <input   id="dateColisage" type="date" [(ngModel)]="entreestock.dateColisage" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="dateEntree">Date Entree</label>
+        <input   id="dateEntree" type="date" [(ngModel)]="entreestock.dateEntree" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+</div>
+<p-tabView>
+    <p-tabPanel header="Details Entree Stock">
+      <div class="card">
+        <p-table [value]="detailsEntreStockList" [paginator]="true" [rows]="10" [responsive]="true" [responsiveLayout]="'scroll'">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Code Article</th>
+              <th>Code Produit Fini</th>
+              <th>Num Lot</th>
+              <th>Qte Liste Colisage</th>
+              <th>Qte Entree</th>
+              <th>Qte Retour</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item let-rowIndex="rowIndex">
+            <tr>
+              <td>
+                <input *ngIf="item.editable" type="text" [(ngModel)]="item.codeArticle">
+                <span *ngIf="!item.editable">{{ item.codeArticle }}</span>
+              </td>
+              <td>
+                <input *ngIf="item.editable" type="text" [(ngModel)]="item.codeProduitFini">
+                <span *ngIf="!item.editable">{{ item.codeProduitFini }}</span>
+              </td>
+              <td>
+                <input *ngIf="item.editable" type="text" [(ngModel)]="item.numLot">
+                <span *ngIf="!item.editable">{{ item.numLot }}</span>
+              </td>
+              <td>
+                <input *ngIf="item.editable" type="number" [(ngModel)]="item.qteListeColisage">
+                <span *ngIf="!item.editable">{{ item.qteListeColisage }}</span>
+              </td>
+              <td>
+                <input *ngIf="item.editable" type="number" [(ngModel)]="item.qteEntree">
+                <span *ngIf="!item.editable">{{ item.qteEntree }}</span>
+              </td>
+              <td>
+                <input *ngIf="item.editable" type="number" [(ngModel)]="item.qteRetour">
+                <span *ngIf="!item.editable">{{ item.qteRetour }}</span>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <div class="p-d-flex p-jc-end p-mt-3">
+          <button pButton label="Ajouter une ligne" icon="pi pi-plus" (click)="addNewRow()"></button>
+        </div>
+      </div>
+    </p-tabPanel>
+  </p-tabView>
+  

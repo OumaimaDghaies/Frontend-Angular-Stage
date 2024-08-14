@@ -1,0 +1,32 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "saveEmployee()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+<div class="formgrid grid">
+    <div class="field col-3">
+        <label for="codeEmployee">codeEmployee</label>
+        <input id="codeEmployee" type="text" [(ngModel)]="employee.codeEmployee" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-3">
+        <label for="libelleEmployee">libelleEmployee </label>
+        <input id="libelleEmployee" type="text" [(ngModel)]="employee.libelleEmployee"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    <div class="field col-2 flex justify-content-center flex-wrap">
+        <div class="flex align-items-center justify-content-center m-0 col-12">
+            Monitrice
+        </div>
+        <div class="flex align-items-center justify-content-center m-0">
+            <p-checkbox [(ngModel)]="employee.monitrice" [binary]="true" inputId="binary" ></p-checkbox>
+        </div>
+    </div>
+   
+   
+   
+    
+</div>
+

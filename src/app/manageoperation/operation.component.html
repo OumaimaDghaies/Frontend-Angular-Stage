@@ -1,0 +1,40 @@
+<p-toolbar styleClass="mb-4 gap-2">
+        <ng-template pTemplate="left">
+            <button pButton label="Enregistrer" pRipple icon="pi pi-save" (click)= "saveOperation()">
+            </button>
+        </ng-template>
+</p-toolbar>
+
+
+<div class="formgrid grid">
+    
+    <div class="field col-3">
+        <label for="codeOperation">code Type Operation </label>
+        <input id="codeOperation" type="text" [(ngModel)]="operation.codeOperation"
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+
+    <div class="field col-3">
+        <label for="libelleOperation"> libelle Type Operation</label>
+        <input id="libelleOperation" type="text" [(ngModel)]="operation.libelleOperation" 
+        class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+    </div>
+    
+
+    <div class="p-fluid">
+        <div class="p-field">
+          <label for="typemateriel">Type Materiel</label>
+          <p-dropdown [options]="typemateriel" [(ngModel)]="selectedTypeMateriel" optionLabel="libelleTypeMateriel" [placeholder]="'Sélectionnez une gamme'"></p-dropdown>
+        </div>
+      
+        <div class="p-field">
+          <label for="typeoperation">Type Operation</label>
+          <p-dropdown [options]="typeoperation" [(ngModel)]="selectedTypeOperation" optionLabel="libelleTypeOperation" [placeholder]="'Sélectionnez une famille de produit fini'"></p-dropdown>
+        </div>
+      </div>
+      
+   
+   
+    
+</div>
+

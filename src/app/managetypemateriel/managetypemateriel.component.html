@@ -1,0 +1,70 @@
+<!--p>mydata works!</p-->
+<p-toast></p-toast>
+<p-messages [(value)]="backendmessages" [enableService]="false" [closable]="true"></p-messages>
+<p-confirmDialog [style]="{width: '50vw'}" acceptLabel="Confirmer" rejectLabel="Annuler"></p-confirmDialog>
+<p-toolbar styleClass="mb-4 gap-2">
+    <ng-template pTemplate="left">
+        <button [disabled]="loading" pButton pRipple label="Ajouter" icon="pi pi-plus" class="p-button-success mr-2"
+            (click)="openNewTypeMateriel()"></button>
+    </ng-template>
+
+    <ng-template pTemplate="right">
+        <button pButton pRipple label="Actualiser" icon="pi pi-refresh" class="p-button-help"
+            (click)="RefreshAllTypeMateriel()"></button>
+    </ng-template>
+</p-toolbar>
+<p-table #dt [value]="listTypeMateriel" [rowHover]="true" styleClass="p-datatable-sm" [loading]="loading"
+    styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" selectionMode="single">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="compteur">
+                <div class="flex align-items-center">compteur <p-sortIcon field="compteur">
+                    </p-sortIcon>
+                    <p-columnFilter type="numeric" field="compteur" matchMode="equals" display="menu">
+                    </p-columnFilter>
+                </div>
+            </th>
+           
+            <th pSortableColumn="codeTypeMateriel">
+                <div class="flex align-items-center">code Type Materiel <p-sortIcon field="codeTypeMateriel"></p-sortIcon>
+                    <p-columnFilter type="text" field="codeTypeMateriel" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            <th pSortableColumn="libelleTypeMateriel">
+                <div class="flex align-items-center">libelle Type Operation<p-sortIcon field="libelleTypeMateriel"></p-sortIcon>
+                    <p-columnFilter type="text" field="libelleTypeMateriel" matchMode="contains" display="menu"></p-columnFilter>
+                </div>
+            </th>
+            
+            <th style="width: 3rem "></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-typemateriel>
+        <tr [pSelectableRow]="typemateriel">
+            <td>{{typemateriel.compteur}}</td>
+            <td>{{typemateriel.codeTypeMateriel}}</td>
+            <td>{{typemateriel.libelleTypeMateriel}}</td>
+            <td  style="width: 3rem; white-space: nowrap;">
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2"
+                    (click)="editTypeMateriel(typemateriel)"></button>
+                    <button pButton pRipple icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger"
+                    (click)="deleteTypeMateriel(typemateriel)">
+            </button>
+            </td>
+        </tr>
+    </ng-template>
+
+</p-table>
+
+<p-dialog *ngIf="displayTypeMaterielDialog" header="Type Operation" [(visible)]="displayTypeMaterielDialog" [modal]="true"
+    [style]="{width: '48vw'}" [draggable]="false" [resizable]="false">
+    <app-typemateriel [typemateriel]="TypeMaterielselected" 
+        [saveE]="saveE" (saveEChange)="updatesaveE($event)" [newTypeMateriel]="newTypeMateriel"></app-typemateriel>
+</p-dialog>
+
+<!--p-dialog *ngIf="displayWithdrawalRequestDialog" header="DEMANDE DE RETRAIT" [(visible)]="displayWithdrawalRequestDialog" [modal]="true"  [style]="{width: '30vw'}"
+[draggable]="false" [resizable]="false">
+    <app-collaboratordatawithdrawalrequest [withdrawalrequest]="withdrawalrequestselected" [saveWR]="saveWR" (saveWRChange)="updatesaveWR($event)" 
+    ></app-collaboratordatawithdrawalrequest>
+</p-dialog-->
